@@ -41,6 +41,21 @@ Usage:
 
 - Custom Elements cannot be self-closing because HTML only allows a few elements to be self-closing. Always write a closing tag(`<custom-element></custom-element>`).
 
+## Shadow DOM
+
+**Shadow DOM** is just normal **DOM** with two differences:
+- how it's created/used
+- how it behaves with the rest of the page
+
+**Shadow host** is the element that **shadow DOM** is attached to.
+
+
+
+
+
+
+
+
 
 
 
