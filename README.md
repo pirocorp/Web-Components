@@ -60,7 +60,7 @@ Usage:
 
 ### Creating Shadow DOM
 
-A **shadow root** is a document fragment that gets attached to a "host" element.
+A **shadow root** is a document fragment attached to a "host" element.
 
 ```js
 const header = document.createElement('header');
@@ -68,10 +68,73 @@ const shadowRoot = document.attachShadow({mode: 'open'});
 shadowRoot.innerHTML = '<h1>Hello Shadow DOM</h1>';
 ```
 
+You cannot add a shadow root element for which the browser creates a shadow DOM.
+
 ```js
 document.createElement('input').attachShadow({mode: 'open'});
 // Error. `<input>` cannot host shadow dom.
 ```
+
+Define Custom Element with Shadow DOM
+
+```js
+class CustomButtonElement extends HTMLElement{
+    constructor(){
+        super();
+
+        const shadowRoot = this.attachShadow({mode: "open"});
+        shadowRoot.innerHTML = this.template('Custom Button');
+        shadowRoot.appendChild(this.style());
+    }
+
+    template(name) {
+        return `
+<button id="custom-button">
+    <img src="button.svg" width="160" height="32" />
+    &nbsp;
+    <span>${name}</span>
+</button>`
+    };
+
+    style(){
+        let style = document.createElement("style");
+
+        style.textContent = `
+button {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+span {
+    position: absolute;
+    left: 30px;
+    top: 7px;
+}`;
+
+        return style;
+    }
+};
+
+(function() {
+    window.customElements.define("custom-button", CustomButtonElement);
+})();
+```
+
+Usage:
+
+```html
+<custom-button></custom-button>
+```
+
 
 ## Resources
 
