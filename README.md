@@ -75,7 +75,7 @@ document.createElement('input').attachShadow({mode: 'open'});
 // Error. `<input>` cannot host shadow dom.
 ```
 
-Define Custom Element with Shadow DOM
+Create Custom Element with Shadow DOM
 
 ```js
 class CustomButtonElement extends HTMLElement{
