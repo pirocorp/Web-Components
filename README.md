@@ -33,7 +33,7 @@ Usage:
 <custom-element>My Custom Element</custom-element>
 ```
 
-## Rules for creating custom elements
+### Rules for creating custom elements
 
 - The name of a custom element must contain a dash (-). So `<x-tags>`, `<my-element>`, and `<my-awesome-app>` are all valid names, while `<tabs>` and `<foo-bar>` are not. This requirement is so the HTML parser can distinguish custom elements from regular elements. It also ensures forward compatibility when new tags are added to HTML.
 
@@ -49,13 +49,33 @@ Usage:
 
 **Shadow host** is the element that **shadow DOM** is attached to.
 
+**Shadow DOM fixes CSS and DOM.** It introduces **scoped styles** to the web platform. Therefore, it brings solutions to common problems in web development:
+
+- **Isolated DOM** - A component's DOM is self-contained (e.g., document.querySelector() won't return nodes in the component's shadow DOM).
+- **Scoped CSS** - CSS defined inside shadow DOM is scoped to it. Style rules don't leak out, and page styles don't bleed in.
+- **Composition** - Design a declarative, markup-based API for your component.
+- **Simplifies CSS** - Scoped DOM means using simple CSS selectors, more generic id/class names, and not worrying about naming conflicts.
+- **Productivity** - Think of apps in chunks of DOM rather than one large (global) page.
 
 
+### Creating Shadow DOM
 
+A **shadow root** is a document fragment that gets attached to a "host" element.
 
+```js
+const header = document.createElement('header');
+const shadowRoot = document.attachShadow({mode: 'open'});
+shadowRoot.innerHTML = '<h1>Hello Shadow DOM</h1>';
+```
 
+```js
+document.createElement('input').attachShadow({mode: 'open'});
+// Error. `<input>` cannot host shadow dom.
+```
 
+## Resources
 
+- [Shadow DOM v1 - Self-Contained Web Components](https://web.dev/shadowdom-v1/)
 
 
 
