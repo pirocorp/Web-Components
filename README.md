@@ -135,6 +135,104 @@ Usage:
 <custom-button></custom-button>
 ```
 
+## Slot Element
+
+Shadow DOM composes different DOM trees together using the <slot> element. Slots are placeholders inside your component that users can fill with their own markup. By defining one or more slots, you invite outside markup to render in your component's shadow DOM. Essentially, you're saying "Render the user's markup over here".
+
+Note: Slots are a way of creating a "declarative API" for a web component. They mix-in the user's DOM to help render the overall component, thus, composing different DOM trees together.
+
+### Light DOM
+
+Light DOM - The markup a user of your component writes. This DOM lives outside the component's shadow DOM. It is the element's actual children 
+```js
+<custom-button>
+    <span slot="button-name">Custom Button</span>
+</custom-button>
+```
+
+Shadow DOM - The DOM a component author writes. Shadow DOM is local to the component and defines its internal structure, scoped CSS, and encapsulates your implementation details. It can also define how to render markup that's authored by the consumer of your component. 
+
+```html
+<button id="custom-button">
+    <img src="button.svg" width="160" height="32" />
+    &nbsp;
+    <span>${name}</span>
+</button>
+```
+
+Flattened DOM tree - The result of the browser distributing the user's light DOM into your shadow DOM, rendering the final product. The flattened tree is what you ultimately see in the DevTools and what's rendered on the page.
+
+
+Slot Example:
+
+Elements are allowed to "cross" the shadow DOM boundary when a \<slot\> invites them in. These elements are called **distributed nodes**. Conceptually, distributed nodes can seem a bit bizarre. Slots don't physically move DOM; they render it at another location inside the shadow DOM.
+
+A component can define zero or more slots in its shadow DOM. Slots can be empty or provide fallback content. If the user doesn't provide light DOM content, the slot renders its fallback content.
+
+You can also create named slots. Named slots are specific holes in your shadow DOM that users reference by name.
+
+```js
+class CustomButtonElement extends HTMLElement{
+    constructor(){
+        super();
+
+        const shadowRoot = this.attachShadow({mode: "open"});
+        shadowRoot.innerHTML = this.template();
+        shadowRoot.appendChild(this.style());
+    }
+
+    template() {
+        return `
+<button id="custom-button">
+    <img src="button.svg" width="160" height="32" />
+    &nbsp;
+    <div>
+        <slot name="button-name"></slot>
+    </div>
+</button>`
+    };
+
+    style(){
+        let style = document.createElement("style");
+
+        style.textContent = `
+button {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+div {
+    position: absolute;
+    left: 30px;
+    top: 7px;
+}`;
+
+        return style;
+    }
+};
+
+(function() {
+    window.customElements.define("custom-button", CustomButtonElement);
+})();
+```
+
+Usage:
+
+```html
+<custom-button>
+    <span slot="button-name">Custom Button</span>
+</custom-button>
+```
+
 
 ## Resources
 
