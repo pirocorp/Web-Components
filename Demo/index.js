@@ -25,7 +25,9 @@ class CustomButtonElement extends HTMLElement{
     <img src="button.svg" width="160" height="32" />
     &nbsp;
     <div>
-        <slot name="button-name"></slot>
+        <slot name="button-name">
+            <span>Default Button</span>
+        </slot>
     </div>
 </button>`
     };
