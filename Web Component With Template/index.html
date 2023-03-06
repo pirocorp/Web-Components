@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Component With Template</title>
+    <script defer src="/index.js"></script>
+</head>
+<body>
+    <template id="custom-button">
+        <style>
+            button {
+                display: flex;
+                align-items: center;
+                position: relative;
+
+                background: none;
+                color: inherit;
+                border: none;
+                padding: 0;
+                font: inherit;
+                cursor: pointer;
+                outline: inherit;
+            }
+
+            div {
+                position: absolute;
+                left: 30px;
+                top: 7px;
+            }
+        </style>
+        <button id="custom-button">
+            <img src="button.svg" width="160" height="32" />
+            &nbsp;
+            <div>
+                <span>
+                    <slot name="button-name">Default Button</slot>
+                </span>
+            </div>
+        </button>
+    </template>
+
+    <custom-button>
+        <em slot="button-name">Custom Button</em>
+    </custom-button>
+</body>
+</html>
