@@ -18,7 +18,7 @@ import { Button } from '@ui5/webcomponents-react';
 
 Use the Imported Elements in your Application
 
-```js
+```html
 <DatePicker></DatePicker>
 <Button>Hello World!</Button>
 ```
