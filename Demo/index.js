@@ -17,6 +17,8 @@ class CustomButtonElement extends HTMLElement{
         const shadowRoot = this.attachShadow({mode: "open"});
         shadowRoot.innerHTML = this.template();
         shadowRoot.appendChild(this.style());
+
+        this.addEventListener('click', () => alert('The button was clicked'));
     }
 
     template() {
@@ -63,3 +65,5 @@ div {
 (function() {
     window.customElements.define("custom-button", CustomButtonElement);
 })();
+
+document.getElementsByTagName('custom-button')[0].addEventListener('click', () => console.log('Outside from the component!'))
