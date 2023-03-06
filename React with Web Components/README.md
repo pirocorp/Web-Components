@@ -12,13 +12,13 @@ npm install @ui5/webcomponents @ui5/webcomponents-react @ui5/webcomponents-fiori
 
 Import the Components That You Are Going To Use
 
-```tsx
+```js
 import { Button } from '@ui5/webcomponents-react';
 ```
 
 Use the Imported Elements in your Application
 
-```tsx
+```js
 <DatePicker></DatePicker>
 <Button>Hello World!</Button>
 ```
