@@ -237,6 +237,7 @@ Usage:
 ## Resources
 
 - [Shadow DOM v1 - Self-Contained Web Components](https://web.dev/shadowdom-v1/)
+- [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
 
 
 
