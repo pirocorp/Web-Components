@@ -1,0 +1,28 @@
+{
+  "name": "react-component-in-custom-element",
+  "version": "1.0.0",
+  "description": "Demo of react component wraped in custom element",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch",
+    "build": "webpack",
+    "tsc": "tsc"
+  },
+  "author": "Zdravko Zdravkov",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-shadow-dom-retarget-events": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@types/react-shadow-dom-retarget-events": "^1.0.0",
+    "ts-loader": "^9.4.2",
+    "typescript": "^4.9.5",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  }
+}
