@@ -1,6 +1,7 @@
 // Wrap CollapsiblePanelInReact component inside a custom HTML element we need to take care of a few things:
 // - Pass the title and children props
 // - Re-render when the title prop is changing
+// https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import retargetEvents from 'react-shadow-dom-retarget-events';
@@ -58,7 +59,6 @@ export default class CollapsiblePanel extends HTMLElement {
             // heavy lifting and will calculate the diffs for us.    
             ReactDOM.render(this.createCollapsed(newValue), this.mountPoint);
         }
-    }
-}
+    }}
 
 //window.customElements.define('collapsible-panel', CollapsiblePanel);
